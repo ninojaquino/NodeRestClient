@@ -30,13 +30,26 @@ export class HttpService {
     return resp.json();
   }
 
-  put() {
-
+  // put('book/id/7', {name: The Hunger Games, isbn: 987654321, Author: Suzanne Collins, Description: Book of The Hunger Games})
+  async put(path: string, payload: any) {
+    const resp = await this.http.put(this.apiURL + path, payload, this.headers).toPromise();
+    console.log('from http service put() resp: ', resp.json());
+    return resp.json();
 
   }
 
-  delete() {
+  // delete ('book/id/10');
+  async delete(path: string) {
+    const resp = await this.http.delete(this.apiURL + path, this.headers).toPromise();
+    console.log('from http service delete()', resp.json());
+    return resp.json();
+  }
 
+  // logout();
+  async logout() {
+    const resp = await this.http.get(this.apiURL + 'user/logout', this.headers).toPromise();
+    console.log('from http service logout()', resp.json());
+    return resp.json();
   }
 
   get headers() {
